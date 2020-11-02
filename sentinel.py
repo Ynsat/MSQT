@@ -4,9 +4,9 @@ def s2_cloudmask(image):
     """Apply cloudmask to Sentinel 2 imagery"""
 
     qa = image.select('QA60');
-    # Bits 10 and 11 are clouds and cirrus, respectively.
-    cloudBitMask = 1 << 10
-    cirrusBitMask = 1 << 11
+    # Bits 10 y 11 son nubes y cirros respectivamente.
+    cloudBitMask = 1 << 10 #nube normal y corriente
+    cirrusBitMask = 1 << 11 #cirro: Nube compuesta por cristales de hielo
 
     # Both flags should be set to zero, indicating clear conditions.
     mask = qa.bitwiseAnd(cloudBitMask).eq(0).And(qa.bitwiseAnd(cirrusBitMask).eq(0))
